@@ -9,6 +9,8 @@ function [J, grad] = costFunction(theta, X, y)
 
 	% You need to return the following variables correctly 
 	J = 0;
+	grad = zeros(size(theta));
+
 
 
 	% ====================== YOUR CODE HERE ======================
@@ -20,13 +22,16 @@ function [J, grad] = costFunction(theta, X, y)
 	% Note: grad should have the same dimensions as theta
 	%
 
-	grad = zeros(size(theta));
 
-	prediction = sigmoid(X * theta);
-	summed_error = (-y' * log(prediction) - (1 - y)' * log(1 - prediction)) ./ m;
+	%%%%%% ANSWER
 
-	grad = (X' * (prediction -y )) ./ m;
+	hx = sigmoid(X * theta);
+	summed_error = (-y' * log(hx) - (1 - y)' * log(1 - hx)) ./ m;
+
+	grad = (X' * (hx - y )) ./ m;
 	J = sum(summed_error);
+
+	%%%%%%
 
 
 % =============================================================
