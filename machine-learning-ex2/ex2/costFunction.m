@@ -23,8 +23,9 @@ function [J, grad] = costFunction(theta, X, y)
 	grad = zeros(size(theta));
 
 	prediction = sigmoid(X * theta);
-	summed_error = (-y' * log(prediction) - (1 - y)' * log(1 - prediction)) ./ m
+	summed_error = (-y' * log(prediction) - (1 - y)' * log(1 - prediction)) ./ m;
 
+	grad = (X' * (prediction -y )) ./ m;
 	J = sum(summed_error);
 
 
