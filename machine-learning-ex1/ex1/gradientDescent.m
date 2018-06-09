@@ -18,7 +18,7 @@ function [theta, J_history] = gradientDescent(X, y, theta, alpha, num_iters)
         
 
         delta = (1/m) * difference;
-        theta = old_theta - alpha * delta;
+        theta = theta - alpha * delta;
 
         % ====================== YOUR CODE HERE ======================
         % Instructions: Perform a single gradient step on the parameter vector
