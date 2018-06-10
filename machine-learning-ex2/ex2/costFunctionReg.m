@@ -19,6 +19,22 @@ grad = zeros(size(theta));
 
 
 
+%%%%% ANSWER
+
+hx = sigmoid(X * theta);
+summed_error = (-y' * log(hx) - (1 - y)' * log(1 - hx)) ./ m;
+
+regularized_theta = lambda * sum(theta(2:end) .^ 2) ./ m ./ 2;
+regularized_summed_error = summed_error + regularized_theta;
+
+regularization_term = (theta(2:end) * lambda ./ m);
+regularization_term = [0; regularization_term];
+
+
+grad = ((X' * (hx - y )) ./ m) + regularization_term;
+J = sum(regularized_summed_error);
+
+%%%%%%
 
 
 
