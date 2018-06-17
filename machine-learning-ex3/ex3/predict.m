@@ -26,8 +26,6 @@ p = zeros(size(X, 1), 1);
 
 	X = [ones(size(X, 1), 1) X];
 
-	% size(X)
-
 	layer2 = sigmoid(X * Theta1');
 	layer2 = [ones(size(layer2, 1), 1) layer2];
 
@@ -36,20 +34,6 @@ p = zeros(size(X, 1), 1);
 
 	[M, I] = max(output_layer, [], 2);
 	p = I;
-
-	% p = max(output_layer, [], 2);
-
-
-	% disp('Theta1, Theta2')
-	% size(Theta1)
-	% size(Theta2)
-	% size(X)
-
-
-
-
-
-
 
 % =========================================================================
 
