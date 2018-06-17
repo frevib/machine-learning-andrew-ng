@@ -17,13 +17,6 @@ p = zeros(size(X, 1), 1);
 % Add ones to the X data matrix
 X = [ones(m, 1) X];
 
-disp('size X')
-size(X)
-
-disp('size all_theta')
-size(all_theta)
-% all_theta;
-
 
 
 % ====================== YOUR CODE HERE ======================
@@ -41,7 +34,7 @@ size(all_theta)
 	
 
 	%%%%% ANSWER
-	
+
 	result = sigmoid(X * all_theta');
 	[M, I] = max(result, [], 2);
 	p = I;
