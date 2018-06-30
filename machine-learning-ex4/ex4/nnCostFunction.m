@@ -44,7 +44,7 @@ Theta2_grad = zeros(size(Theta2));
 
  	J = 1/m * sum(sum((-y_matrix .* log(hx) - (1 - y_matrix) .* log(1 - hx))));
 
-
+ 	J = J + ((sum(sum(Theta1(:,2:end) .^ 2)) + sum(sum(Theta2(:,2:end) .^ 2))) * lambda/2/m);
 
 %%%%%%%
 
