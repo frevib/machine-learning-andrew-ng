@@ -37,13 +37,13 @@ Theta2_grad = zeros(size(Theta2));
 	layer2 = sigmoid([ones(m, 1) X] * Theta1');
 	layer2 = [ones(size(layer2, 1), 1) layer2];
 	output_layer = sigmoid(layer2 * Theta2');
-	% size(output_layer)
 
 	hx = output_layer;
 	y_matrix = eye(num_labels)(y,:);
 
  	J = 1/m * sum(sum((-y_matrix .* log(hx) - (1 - y_matrix) .* log(1 - hx))));
 
+ 	% Regularize
  	J = J + ((sum(sum(Theta1(:,2:end) .^ 2)) + sum(sum(Theta2(:,2:end) .^ 2))) * lambda/2/m);
 
 %%%%%%%
