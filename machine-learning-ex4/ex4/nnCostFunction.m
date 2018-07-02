@@ -66,6 +66,8 @@ Theta2_grad = zeros(size(Theta2));
  	Theta1_grad = Delta1 ./ m;
 	Theta2_grad = Delta2 ./ m;
 
+	Theta1_grad(:, 2:end) = Theta1_grad(:, 2:end) + (Theta1(:, 2:end) .* lambda ./ m);
+	Theta2_grad(:, 2:end) = Theta2_grad(:, 2:end) + (Theta2(:, 2:end) .* lambda ./ m);
 
  % 	Theta1_grad = Delta_1 ./ m;
 	% Theta2_grad = Delta_2 ./ m;
