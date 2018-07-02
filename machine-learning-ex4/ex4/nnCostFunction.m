@@ -36,9 +36,7 @@ Theta2_grad = zeros(size(Theta2));
 	% Forward propagate:
 	layer2 = sigmoid([ones(m, 1) X] * Theta1');
 	layer2 = [ones(size(layer2, 1), 1) layer2];
-	output_layer = sigmoid(layer2 * Theta2');
-
-	hx = output_layer;
+	hx = sigmoid(layer2 * Theta2');
 	y_matrix = eye(num_labels)(y,:);
 
  	J = 1/m * sum(sum((-y_matrix .* log(hx) - (1 - y_matrix) .* log(1 - hx))));
@@ -46,6 +44,81 @@ Theta2_grad = zeros(size(Theta2));
  	% Regularize
  	J = J + ((sum(sum(Theta1(:,2:end) .^ 2)) + sum(sum(Theta2(:,2:end) .^ 2))) * lambda/2/m);
 
+ 	Delta_1 = zeros(hidden_layer_size, input_layer_size + 1);
+ 	Delta_2 = zeros(num_labels, hidden_layer_size + 1);
+
+ 	% Gradients
+ 	a1 = [ones(m, 1) X];
+ 	z2 = a1 * Theta1';
+ 	a2 = sigmoid(z2);
+
+ 	a2 = [ones(size(a2, 1), 1) a2];
+ 	z3 = a2 * Theta2';
+ 	a3 = sigmoid(z3);
+
+ 	d3 = a3 - y_matrix;
+ 	d2 = d3 * Theta2(:, 2:end) .* sigmoidGradient(z2);
+
+
+ 	Delta1 = d2' * a1;
+ 	Delta2 = d3' * a2;
+
+ 	Theta1_grad = Delta1 ./ m;
+	Theta2_grad = Delta2 ./ m;
+
+
+ % 	Theta1_grad = Delta_1 ./ m;
+	% Theta2_grad = Delta_2 ./ m;
+ 	grad = [Theta1_grad(:); Theta2_grad(:)];
+
+
+ 	% Apparently the for loop method is much more difficult to implement :(
+ 	% for i = 1:1
+ 	% 	% 1. Feed forward
+ 	% 	a_1 = X(i,:);
+ 	% 	a_1 = [1 a_1];
+ 	% 	z_2 = a_1 * Theta1';
+ 	% 	a_2 = sigmoid(z_2);
+ 		
+ 	% 	a_2 = [1 a_2];
+ 	% 	z_3 = a_2 * Theta2';
+ 	% 	a_3 = sigmoid(z_3);
+
+		% % 2. calculate delta for output layer
+		% delta_3 = a_3' - y(i,:)';
+
+
+		% % 3. calculate delta for hidden layer
+		% % size(Theta2)
+		% % size(delta_3)
+		% % size(sigmoidGradient(z_2'))
+		% delta_2 = (Theta2(:, 2:end)' * delta_3) .* sigmoidGradient(z_2');
+		% disp('Sizes a_, delta_');
+		% % size(delta_2)
+		% delta_2
+		% % size(a_1)
+		% % size(z_2)
+		
+		% delta_3
+		% a_1
+		% a_2
+		% a_3
+		% z_2
+		% z_3
+		% % size(delta_3)
+		% % size(a_2)
+		
+		% % 4. Accumulate gradient
+		% % Delta_2 = zeros(size(delta_3, 1), size(a_2, 2));
+		% % size(Delta_2)
+		% Delta_1 = Delta_1 + delta_2 * a_1;
+		% Delta_2 = Delta_2 + delta_3 * a_2;
+		% % size(Delta_1)
+
+ 	% end
+
+
+	
 %%%%%%%
 
 % ====================== YOUR CODE HERE ======================
