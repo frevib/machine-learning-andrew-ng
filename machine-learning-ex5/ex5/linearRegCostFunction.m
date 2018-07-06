@@ -31,10 +31,9 @@ grad = zeros(size(theta));
 	J = J_unregularized + regularization_term;
 
 
-
-
-
-
+	gradient_unregularized = (X' *(hx - y)) ./ m;
+	regularization_term_gradient = theta(2:end) * lambda ./ m;
+	grad = gradient_unregularized + [0; regularization_term_gradient];
 
 
 % =========================================================================
