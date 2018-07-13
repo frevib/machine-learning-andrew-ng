@@ -14,11 +14,14 @@ X_poly = zeros(numel(X), p);
 %               column of X contains the values of X to the p-th power.
 %
 % 
+ X_geit = X;
 
+for i = 2:p
+	X_column = X .^ i;
+	X_geit = [X_geit X_column];
+end
 
-
-
-
+X_poly = X_geit;
 
 % =========================================================================
 
