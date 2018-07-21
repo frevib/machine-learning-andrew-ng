@@ -31,8 +31,6 @@ for i = values
 		model = svmTrain(X, y, i, @(x1, x2) gaussianKernel(x1, x2, j)); 
 		predictions = svmPredict(model, Xval);
 
-		mean(double(predictions ~= yval))
-
 		if (mean(double(predictions ~= yval)) < min_error)
 			disp('found minimum')
 			min_error = mean(double(predictions ~= yval))
