@@ -48,9 +48,16 @@ x = zeros(n, 1);
 %
 %
 
+% word_indices
 
+for i = 1:n
+	if ismember(i, word_indices)
+		% sprintf("yea:: %d", i)
+		x(i) = 1;
+	end
+end
 
-
+% x
 
 
 
