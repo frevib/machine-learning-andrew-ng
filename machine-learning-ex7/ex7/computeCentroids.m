@@ -27,8 +27,15 @@ centroids = zeros(K, n);
 %
 
 
+size_centroids = size(centroids, 1);
 
 
+for i = 1:size_centroids
+	belong_to_centroid = X(idx == i, :);
+	size_belong = size(belong_to_centroid, 1);
+	new_total = sum(belong_to_centroid);
+	centroids(i, :) = new_total ./ size_belong;	
+end
 
 
 
