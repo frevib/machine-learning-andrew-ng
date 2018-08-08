@@ -55,7 +55,8 @@ error_factor = error_prediction .* R;
 J = sum(sum(error_factor .^ 2)) / 2;
 
 
-
+X_grad = error_factor * Theta;
+Theta_grad = error_factor' * X; 
 
 
 % =============================================================
