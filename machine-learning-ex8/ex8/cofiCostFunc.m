@@ -41,15 +41,18 @@ Theta_grad = zeros(size(Theta));
 %
 
 
+% size(X)
+% size(Y)
+% size(Theta)
 
 
+prediction = X * Theta';
+error_prediction = prediction - Y;
+% R
 
+error_factor = error_prediction .* R;
 
-
-
-
-
-
+J = sum(sum(error_factor .^ 2)) / 2;
 
 
 
